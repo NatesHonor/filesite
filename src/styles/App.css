@@ -1,72 +1,126 @@
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f4f8;
-  color: #333;
   margin: 0;
-  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
 }
 
 .app {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-.menu {
-  background-color: #007bff;
-  padding: 10px 0;
+.header {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.logo a {
+  color: #fff;
+  text-decoration: none;
 }
 
 .menu ul {
-  list-style-type: none;
+  list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
-  justify-content: center;
 }
 
 .menu li {
-  margin: 0 15px;
+  margin-left: 20px;
 }
 
 .menu a {
-  color: white;
+  color: #fff;
   text-decoration: none;
-  font-weight: bold;
+  font-size: 18px;
 }
 
 .menu a:hover {
   text-decoration: underline;
 }
 
-.downloads {
+.main-content {
+  flex: 1;
   padding: 20px;
+  transition: opacity 0.5s ease-in-out;
 }
 
-.download-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.download-item {
-  background-color: white;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 20px;
-  margin: 10px;
-  width: 300px;
+.hero {
+  text-align: center;
+  padding: 50px 20px;
+  background-color: #fff;
+  margin-bottom: 20px;
+  border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.download-button {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  margin-top: 10px;
+.hero h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
 }
 
-.download-button:hover {
+.hero p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.cta-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 18px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cta-button a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.cta-button:hover {
   background-color: #0056b3;
+}
+
+.features {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.feature {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 30%;
+  text-align: center;
+}
+
+.feature h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.feature p {
+  font-size: 16px;
+}
+
+.footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
 }
