@@ -18,6 +18,20 @@
     margin-bottom: 20px;
   }
   
+  .download-link {
+    font-size: 14px;
+    color: #007bff;
+  }
+  
+  .download-link a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .download-link a:hover {
+    text-decoration: underline;
+  }
+  
   .donate-section {
     margin-top: 40px;
   }
@@ -25,6 +39,35 @@
   .donate-section h2 {
     font-size: 24px;
     margin-bottom: 20px;
+  }
+  
+  .amount-buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .amount-buttons button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 4px;
+    margin: 0 10px;
+    cursor: pointer;
+  }
+  
+  .amount-buttons button:hover {
+    background-color: #0056b3;
+  }
+  
+  .amount-buttons input {
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-left: 10px;
   }
   
   .donate-buttons {
@@ -41,6 +84,7 @@
     border-radius: 4px;
     text-decoration: none;
     margin: 0 10px;
+    cursor: pointer;
   }
   
   .donate-button:hover {

@@ -6,10 +6,18 @@ function ThankYou() {
   const { downloadName } = useParams();
   const [countdown, setCountdown] = useState(5);
   const [amount, setAmount] = useState(0);
+  const [downloadStarted, setDownloadStarted] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCountdown((prevCountdown) => prevCountdown - 1);
+      setCountdown((prevCountdown) => {
+        if (prevCountdown <= 1) {
+          clearInterval(timer);
+          setDownloadStarted(true);
+          return 0;
+        }
+        return prevCountdown - 1;
+      });
     }, 1000);
 
     const downloadTimer = setTimeout(() => {
@@ -37,7 +45,12 @@ function ThankYou() {
   return (
     <div className="thank-you">
       <h1>Thank You for Downloading {downloadName}</h1>
-      <p>Your download will start in {countdown} seconds...</p>
+      <p>{countdown > 0 ? `Your download will start in ${countdown} seconds...` : 'Download is starting...'}</p>
+      {downloadStarted && (
+        <p className="download-link">
+          Download not started? <a href={`https://api.natemarcellus.com/download/${downloadName}`} target="_blank" rel="noopener noreferrer">Click here</a>
+        </p>
+      )}
       <div className="donate-section">
         <h2>Donate to my projects and development efforts</h2>
         <div className="amount-buttons">
