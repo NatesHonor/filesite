@@ -35,7 +35,7 @@ function ThankYou() {
   };
 
   const generatePayPalUrl = () => {
-    return `https://paypal.me/TheNatrix01/${amount}`;
+    return `https://paypal.me/natemarcellus/${amount}`;
   };
 
   const generateCashAppUrl = () => {
