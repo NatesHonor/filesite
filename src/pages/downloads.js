@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Downloads.css';
 
+const apikey = process.env.REACT_APP_API_KEY;
+
 function Downloads() {
   const [downloadCounts, setDownloadCounts] = useState({});
 
@@ -12,7 +14,11 @@ function Downloads() {
 
       for (const name of downloadNames) {
         try {
-          const response = await fetch(`https://api.natemarcellus.com/download/info/${name}`);
+          const response = await fetch(`https://api.natemarcellus.com/download/info/${name}`, {
+            headers: {
+              'x-api-key': apikey
+            }
+          });
           const data = await response.json();
           console.log(`Fetched data for ${name}:`, data);
           counts[name] = data.downloads || data.downloadCount || 0;

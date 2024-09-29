@@ -20,8 +20,32 @@ function ThankYou() {
       });
     }, 1000);
 
+    const startDownload = async () => {
+      try {
+        const response = await fetch(`https://api.natemarcellus.com/download/${downloadName}`, {
+          headers: {
+            'x-api-key': process.env.REACT_APP_API_KEY
+          }
+        });
+        if (response.ok) {
+          const blob = await response.blob();
+          const url = window.URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = downloadName;
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+        } else {
+          console.error('Download failed');
+        }
+      } catch (error) {
+        console.error('Error during download:', error);
+      }
+    };
+
     const downloadTimer = setTimeout(() => {
-      window.location.href = `https://api.natemarcellus.com/download/${downloadName}`;
+      startDownload();
     }, 5000);
 
     return () => {
