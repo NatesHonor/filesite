@@ -1,0 +1,124 @@
+.download-page {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #ffffff;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    font-family: Arial, sans-serif;
+}
+
+.download-page h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.latest-version {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.latest-version h2 {
+    margin-bottom: 15px;
+    font-size: 24px;
+    color: #007bff;
+}
+
+.download-page h3 {
+    font-size: 22px;
+    margin: 30px 0 15px;
+    color: #444;
+}
+
+.version-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.version-list li {
+    margin: 15px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.version-list a {
+    color: #007bff;
+    text-decoration: none;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.version-list a:hover {
+    text-decoration: underline;
+}
+
+.version-list button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    font-size: 16px;
+}
+
+.version-list button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.changelog-content {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    padding: 20px;
+    margin-top: 10px;
+    text-align: left;
+    line-height: 1.6;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.readme-content {
+    text-align: left;
+    margin-top: 20px;
+  }
+  
+  .readme-content h3 {
+    margin-bottom: 10px;
+  }
+  
+
+@media (max-width: 600px) {
+    .download-page {
+        padding: 30px 10px;
+    }
+
+    .download-page h1 {
+        font-size: 28px;
+    }
+
+    .latest-version h2 {
+        font-size: 20px;
+    }
+
+    .download-page h3 {
+        font-size: 18px;
+    }
+
+    .version-list button {
+        padding: 6px 12px;
+    }
+}
