@@ -11,9 +11,11 @@ const DownloadPage = () => {
   const [expandedVersion, setExpandedVersion] = useState(null);
   const [changelogContent, setChangelogContent] = useState('');
   const [readmeContent, setReadmeContent] = useState('');
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchVersions = async () => {
+      setLoading(true);
       try {
         const response = await fetch(`https://api.natemarcellus.com/version/${appNameLower}`, {
           method: 'GET',
@@ -39,6 +41,8 @@ const DownloadPage = () => {
         setReadmeContent(readmeText);
       } catch (error) {
         console.error('Error fetching versions or README:', error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -68,46 +72,59 @@ const DownloadPage = () => {
     }
   };
 
+  const LoadingScreen = () => (
+    <div className="loading-screen">
+      <h2>Loading...</h2>
+      <p>Please wait while we fetch the latest information.</p>
+    </div>
+  );
+
   return (
     <div className="download-page">
-      <h1>Download the Latest Version</h1>
-      <div className="latest-version">
-        <h2>{appName} - {latestVersion}</h2>
-        <Link to={`/thank-you/${appName}/latest`}>
-          <button>Download Version {latestVersion}</button>
-        </Link>
-        <button onClick={() => handleToggleChangelog(latestVersion)}>
-          {expandedVersion === latestVersion ? 'Hide changelog' : 'See changelog'}
-        </button>
-        {expandedVersion === latestVersion && (
-          <div className="changelog-content">
-            <ReactMarkdown>{changelogContent}</ReactMarkdown> 
-          </div>
-        )}
-        <div className="readme-content">
-          <ReactMarkdown>{readmeContent}</ReactMarkdown>
-        </div>
-      </div>
-      <h3>Previous Versions:</h3>
-      <ul className="version-list">
-        {versions.map((version) => (
-          <li key={version}>
-            <Link to={`/thank-you/${appName}/${version}`}>{version}</Link>
-            {appName === 'MissionchiefBot' && (
-              <>
-                <button onClick={() => handleToggleChangelog(version)}>
-                  {expandedVersion === version ? 'Hide changelog' : 'See changelog'}
-                </button>
-                {expandedVersion === version && (
-                  <div className="changelog-content">
-                    <ReactMarkdown>{changelogContent}</ReactMarkdown> 
-                  </div>
-                )}
-              </>
+      {loading ? (
+        <LoadingScreen />
+      ) : (
+        <>
+          <h1>Download the Latest Version</h1>
+          <div className="latest-version">
+            <h2>{appName} - {latestVersion}</h2>
+            <Link to={`/thank-you/${appName}/latest`}>
+              <button>Download Version {latestVersion}</button>
+            </Link>
+            <button onClick={() => handleToggleChangelog(latestVersion)}>
+              {expandedVersion === latestVersion ? 'Hide changelog' : 'See changelog'}
+            </button>
+            {expandedVersion === latestVersion && (
+              <div className="changelog-content">
+                <ReactMarkdown>{changelogContent}</ReactMarkdown> 
+              </div>
             )}
-          </li>
-        ))}
-      </ul>
+            <div className="readme-content">
+              <ReactMarkdown>{readmeContent}</ReactMarkdown>
+            </div>
+          </div>
+          <h3>Previous Versions:</h3>
+          <ul className="version-list">
+            {versions.map((version) => (
+              <li key={version}>
+                <Link to={`/thank-you/${appName}/${version}`}>{version}</Link>
+                {appName === 'MissionchiefBot' && (
+                  <>
+                    <button onClick={() => handleToggleChangelog(version)}>
+                      {expandedVersion === version ? 'Hide changelog' : 'See changelog'}
+                    </button>
+                    {expandedVersion === version && (
+                      <div className="changelog-content">
+                        <ReactMarkdown>{changelogContent}</ReactMarkdown> 
+                      </div>
+                    )}
+                  </>
+                )}
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
     </div>
   );
 };
