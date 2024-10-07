@@ -43,19 +43,19 @@ function Downloads() {
           <h2>NateLauncher</h2>
           <p>NateLauncher is a launcher to launch all of the projects I make and is recommended for using the Missionchief Bot.</p>
           <p>Downloads: {downloadCounts.NateLauncher !== undefined ? downloadCounts.NateLauncher : 'Loading...'}</p>
-          <Link to="/thank-you/NateLauncher" className="download-button">Download</Link>
+          <Link to="/download/NateLauncher" className="download-button">Download</Link>
         </div>
         <div className="download-item">
           <h2>Missionchief Bot</h2>
           <p>The Missionchief Bot automates tasks and handles transportation requests to automate Missionchief credit gathering.</p>
           <p>Downloads: {downloadCounts['MissionchiefBot-Latest'] !== undefined ? downloadCounts['MissionchiefBot-Latest'] : 'Loading...'}</p>
-          <Link to="/thank-you/MissionchiefBot-Latest" className="download-button">Download</Link>
+          <Link to="/download/MissionchiefBot" className="download-button">Download</Link>
         </div>
         <div className="download-item">
           <h2>MilitaryChiefCLI (WIP)</h2>
           <p>MilitaryChiefCLI is a work-in-progress spin-off of Missionchief tailored for military operations. Stay tuned for updates!</p>
           <p>Downloads: {downloadCounts.MilitaryChiefCLI !== undefined ? downloadCounts.MilitaryChiefCLI : 'Loading...'}</p>
-          <Link to="/thank-you/MilitaryChiefCLI" className="download-button">Download</Link>
+          <Link to="/download/MilitaryChiefCLI" className="download-button">Download</Link>
         </div>
       </div>
     </div>
