@@ -101,8 +101,8 @@
   background-color: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  text-align: left; /* Align content to the left */
-  max-width: 800px; /* Center the container on the page */
+  text-align: left;
+  max-width: 800px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -116,4 +116,16 @@
   overflow-wrap: break-word;
   font-family: 'Arial', sans-serif;
   font-size: 16px;
+}
+
+.click-here {
+  font-size: 16px;
+  color: #007bff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.click-here:hover {
+  text-decoration: underline;
+  color: #0056b3;
 }
