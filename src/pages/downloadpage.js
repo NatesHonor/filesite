@@ -47,7 +47,7 @@ const DownloadPage = () => {
     };
 
     fetchVersions();
-  }, [appName]);
+  }, [appNameLower]);
 
   const handleToggleChangelog = async (version) => {
     if (expandedVersion === version) {
