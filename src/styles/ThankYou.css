@@ -34,10 +34,10 @@
 
 .donate-section {
   margin-top: 40px;
-  padding: 20px; /* Added padding for better spacing */
-  background-color: #f9f9f9; /* Light background for donation section */
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .donate-section h2 {
@@ -96,20 +96,24 @@
 }
 
 .markdown-container {
-  margin-top: 30px; /* Space between sections */
-  padding: 20px; /* Added padding for consistency */
-  background-color: #f9f9f9; /* Light background for Markdown content */
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: left; /* Align content to the left */
+  max-width: 800px; /* Center the container on the page */
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .markdown-container h3 {
   font-size: 24px;
-  margin-bottom: 15px; /* Space below heading */
+  margin-bottom: 15px;
 }
 
 .markdown-content {
-  overflow-wrap: break-word; /* Wrap long lines */
-  font-family: 'Arial', sans-serif; /* Set a readable font */
-  font-size: 16px; /* Font size for markdown content */
+  overflow-wrap: break-word;
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
 }
