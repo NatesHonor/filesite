@@ -33,9 +33,9 @@ function AppContent() {
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Home />} />
           <Route path="/downloads" element={<Downloads />} />
-          <Route path="/download/:appName" element={<DownloadPage />} /> {/* Use element instead of component */}
+          <Route path="/download/:appName" element={<DownloadPage />} />
           <Route path="/donate" element={<Donate />} />
-          <Route path="/thank-you/:downloadName/:version?" element={<ThankYou />} />
+          <Route path="/thank-you/:downloadName/:version" element={<ThankYou />} />
         </Routes>
       </main>
       <footer className="footer">

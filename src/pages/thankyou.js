@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
+import ReactMarkdown from 'react-markdown';
 import '../styles/ThankYou.css';
 
 function ThankYou() {
-  const { downloadName } = useParams();
+  const location = useLocation();
   const [countdown, setCountdown] = useState(5);
   const [amount, setAmount] = useState(0);
   const [downloadStarted, setDownloadStarted] = useState(false);
+  const [markdownContent, setMarkdownContent] = useState('');
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -22,17 +24,17 @@ function ThankYou() {
 
     const startDownload = async () => {
       try {
-        const response = await fetch(`https://api.natemarcellus.com/download/${downloadName}`, {
+        const response = await fetch(`https://api.natemarcellus.com/download${location.pathname}`, {
           headers: {
-            'x-api-key': process.env.REACT_APP_API_KEY
-          }
+            'x-api-key': process.env.REACT_APP_API_KEY,
+          },
         });
         if (response.ok) {
           const blob = await response.blob();
           const url = window.URL.createObjectURL(blob);
           const a = document.createElement('a');
           a.href = url;
-          a.download = downloadName;
+          a.download = location.pathname.split('/').pop();
           document.body.appendChild(a);
           a.click();
           a.remove();
@@ -52,7 +54,36 @@ function ThankYou() {
       clearInterval(timer);
       clearTimeout(downloadTimer);
     };
-  }, [downloadName]);
+  }, [location.pathname]);
+
+  const displayDownloadName = location.pathname.includes('latest')
+    ? 'Missionchief Bot Latest'
+    : `Missionchief Bot Version: ${location.pathname.split('/').pop()}`;
+
+    useEffect(() => {
+      const fetchMarkdown = async () => {
+        let markdownFile;
+        const missionchiefVersionFinder = location.pathname.includes('latest')
+          ? '/MarkDownFiles/MissionchiefBotLatest.md'
+          : `/MarkDownFiles/MissionchiefBot${location.pathname.split('/').pop()}.md`;
+        
+        markdownFile = missionchiefVersionFinder;
+        try {
+          const response = await fetch(markdownFile);
+          if (response.ok) {
+            const text = await response.text();
+            setMarkdownContent(text);
+          } else {
+            console.error('Failed to fetch Markdown file');
+          }
+        } catch (error) {
+          console.error('Error fetching Markdown file:', error);
+        }
+      };
+    
+      fetchMarkdown();
+    }, [location.pathname]);
+    
 
   const handleAmountChange = (e) => {
     setAmount(e.target.value);
@@ -66,15 +97,18 @@ function ThankYou() {
     return `https://cash.app/$natejmar/${amount}`;
   };
 
+
+
   return (
     <div className="thank-you">
-      <h1>Thank You for Downloading {downloadName}</h1>
+      <h1>Thank You for Downloading {displayDownloadName}</h1>
       <p>{countdown > 0 ? `Your download will start in ${countdown} seconds...` : 'Download is starting...'}</p>
       {downloadStarted && (
         <p className="download-link">
-          Download not started? <a href={`https://api.natemarcellus.com/download/${downloadName}`} target="_blank" rel="noopener noreferrer">Click here</a>
+          Download not started? <a href={`https://api.natemarcellus.com/download${location.pathname}`} target="_blank" rel="noopener noreferrer">Click here</a>
         </p>
       )}
+
       <div className="donate-section">
         <h2>Donate to my projects and development efforts</h2>
         <div className="amount-buttons">
@@ -93,6 +127,12 @@ function ThankYou() {
         <div className="donate-buttons">
           <a href={generatePayPalUrl()} target="_blank" rel="noopener noreferrer" className="donate-button">Donate with PayPal</a>
           <a href={generateCashAppUrl()} target="_blank" rel="noopener noreferrer" className="donate-button">Donate with Cash App</a>
+        </div>
+      </div>
+
+      <div className="markdown-container">
+        <div className="markdown-content">
+          <ReactMarkdown>{markdownContent}</ReactMarkdown>
         </div>
       </div>
     </div>
