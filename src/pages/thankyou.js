@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import React, { useEffect, useState, useCallback } from 'react';
+import { useLocation } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import '../styles/ThankYou.css';
 
@@ -9,6 +9,35 @@ function ThankYou() {
   const [amount, setAmount] = useState(0);
   const [downloadStarted, setDownloadStarted] = useState(false);
   const [markdownContent, setMarkdownContent] = useState('');
+
+  const startDownload = useCallback(async () => {
+    try {
+      const pathParts = location.pathname.split('/');
+      const appName = pathParts[2];
+      const version = pathParts[3];
+
+      const response = await fetch(`https://api.natemarcellus.com/download/${appName}/${version}`, {
+        headers: {
+          'x-api-key': process.env.REACT_APP_API_KEY,
+        },
+      });
+
+      if (response.ok) {
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${version}.zip`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      } else {
+        console.error('Download failed');
+      }
+    } catch (error) {
+      console.error('Error during download:', error);
+    }
+  }, [location.pathname]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -22,30 +51,6 @@ function ThankYou() {
       });
     }, 1000);
 
-    const startDownload = async () => {
-      try {
-        const response = await fetch(`https://api.natemarcellus.com/download${location.pathname}`, {
-          headers: {
-            'x-api-key': process.env.REACT_APP_API_KEY,
-          },
-        });
-        if (response.ok) {
-          const blob = await response.blob();
-          const url = window.URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.href = url;
-          a.download = location.pathname.split('/').pop();
-          document.body.appendChild(a);
-          a.click();
-          a.remove();
-        } else {
-          console.error('Download failed');
-        }
-      } catch (error) {
-        console.error('Error during download:', error);
-      }
-    };
-
     const downloadTimer = setTimeout(() => {
       startDownload();
     }, 5000);
@@ -54,36 +59,35 @@ function ThankYou() {
       clearInterval(timer);
       clearTimeout(downloadTimer);
     };
-  }, [location.pathname]);
+  }, [location.pathname, startDownload]);
 
   const displayDownloadName = location.pathname.includes('latest')
     ? 'Missionchief Bot Latest'
     : `Missionchief Bot Version: ${location.pathname.split('/').pop()}`;
 
-    useEffect(() => {
-      const fetchMarkdown = async () => {
-        let markdownFile;
-        const missionchiefVersionFinder = location.pathname.includes('latest')
-          ? '/MarkDownFiles/MissionchiefBotLatest.md'
-          : `/MarkDownFiles/MissionchiefBot${location.pathname.split('/').pop()}.md`;
-        
-        markdownFile = missionchiefVersionFinder;
-        try {
-          const response = await fetch(markdownFile);
-          if (response.ok) {
-            const text = await response.text();
-            setMarkdownContent(text);
-          } else {
-            console.error('Failed to fetch Markdown file');
-          }
-        } catch (error) {
-          console.error('Error fetching Markdown file:', error);
+  useEffect(() => {
+    const fetchMarkdown = async () => {
+      let markdownFile;
+      const missionchiefVersionFinder = location.pathname.includes('latest')
+        ? '/MarkDownFiles/MissionchiefBotLatest.md'
+        : `/MarkDownFiles/MissionchiefBot${location.pathname.split('/').pop()}.md`;
+
+      markdownFile = missionchiefVersionFinder;
+      try {
+        const response = await fetch(markdownFile);
+        if (response.ok) {
+          const text = await response.text();
+          setMarkdownContent(text);
+        } else {
+          console.error('Failed to fetch Markdown file');
         }
-      };
-    
-      fetchMarkdown();
-    }, [location.pathname]);
-    
+      } catch (error) {
+        console.error('Error fetching Markdown file:', error);
+      }
+    };
+
+    fetchMarkdown();
+  }, [location.pathname]);
 
   const handleAmountChange = (e) => {
     setAmount(e.target.value);
@@ -97,7 +101,9 @@ function ThankYou() {
     return `https://cash.app/$natejmar/${amount}`;
   };
 
-
+  const handleDownloadRetry = () => {
+    startDownload();
+  };
 
   return (
     <div className="thank-you">
@@ -105,7 +111,8 @@ function ThankYou() {
       <p>{countdown > 0 ? `Your download will start in ${countdown} seconds...` : 'Download is starting...'}</p>
       {downloadStarted && (
         <p className="download-link">
-          Download not started? <a href={`https://api.natemarcellus.com/download${location.pathname}`} target="_blank" rel="noopener noreferrer">Click here</a>
+          Download not started? 
+          <button className="click-here" onClick={handleDownloadRetry}>Click here</button>
         </p>
       )}
 
