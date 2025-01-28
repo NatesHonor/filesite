@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link, useLocation } from 'react-router-dom';
-import Downloads from './pages/downloads.js'; 
-import DownloadPage from './pages/downloadpage.js';
+import Downloads from './pages/downloads.js';
 import Donate from './pages/donate.js';
 import ThankYou from './pages/thankyou.js';
+import Missionchief from './pages/subpages/Missionchief.js';
 import './styles/App.css';
 
 function App() {
@@ -29,15 +29,13 @@ function AppContent() {
           </ul>
         </nav>
       </header>
-      <main className="main-content">
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Home />} />
           <Route path="/downloads" element={<Downloads />} />
-          <Route path="/download/:appName" element={<DownloadPage />} />
+          <Route path="/downloads/missionchiefbot" element={<Missionchief />} />
           <Route path="/donate" element={<Donate />} />
           <Route path="/thank-you/:downloadName/:version" element={<ThankYou />} />
         </Routes>
-      </main>
       <footer className="footer">
         <p>© 2024 Nate's Downloads. All rights reserved.</p>
       </footer>
