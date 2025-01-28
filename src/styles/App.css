@@ -1,17 +1,16 @@
-body {
-  margin: 0;
-  font-family: 'Arial', sans-serif;
-  background-color: #f4f4f4;
-}
-
 .app {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: #1a1a2e;
+  color: #e0e0e0;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
 .header {
-  background-color: #333;
+  background-color: #2b2b3d;
   color: #fff;
   padding: 20px;
   display: flex;
@@ -59,30 +58,34 @@ body {
 .hero {
   text-align: center;
   padding: 50px 20px;
-  background-color: #fff;
+  background-color: #2b2b3d;
+  margin-top: 20px;
   margin-bottom: 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .hero h1 {
   font-size: 36px;
   margin-bottom: 20px;
+  color: #f0f0f0;
 }
 
 .hero p {
   font-size: 18px;
   margin-bottom: 20px;
+  color: #d0d0d0;
 }
 
 .cta-button {
-  background-color: #007bff;
+  background-color: #6ab6ff;
   color: #fff;
   border: none;
   padding: 10px 20px;
   font-size: 18px;
   border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s;
 }
 
 .cta-button a {
@@ -91,7 +94,8 @@ body {
 }
 
 .cta-button:hover {
-  background-color: #0056b3;
+  background-color: #509ed8;
+  transform: scale(1.05);
 }
 
 .features {
@@ -101,10 +105,10 @@ body {
 }
 
 .feature {
-  background-color: #fff;
+  background-color: #2b2b3d;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   width: 30%;
   text-align: center;
 }
@@ -112,14 +116,16 @@ body {
 .feature h2 {
   font-size: 24px;
   margin-bottom: 10px;
+  color: #f0f0f0;
 }
 
 .feature p {
   font-size: 16px;
+  color: #d0d0d0;
 }
 
 .footer {
-  background-color: #333;
+  background-color: #2b2b3d;
   color: #fff;
   text-align: center;
   padding: 10px;
