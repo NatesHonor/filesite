@@ -40,16 +40,16 @@ function Downloads() {
       <p>Explore our tools and utilities designed to enhance your experience.</p>
       <div className="download-list">
         <div className="download-item">
+          <h2>Missionchief Bot</h2>
+          <p>The Missionchief Bot automates tasks and handles transportation requests to automate Missionchief credit gathering.</p>
+          <p>Downloads: {downloadCounts['MissionchiefBot-Latest'] !== undefined ? downloadCounts['MissionchiefBot-Latest'] : 'Loading...'}</p>
+          <Link to="/downloads/MissionchiefBot" className="download-button">Download</Link>
+        </div>
+        <div className="download-item">
           <h2>NateLauncher</h2>
           <p>NateLauncher is a launcher to launch all of the projects I make and is recommended for using the Missionchief Bot.</p>
           <p>Downloads: {downloadCounts.NateLauncher !== undefined ? downloadCounts.NateLauncher : 'Loading...'}</p>
           <Link to="/download/NateLauncher" className="download-button">Download</Link>
-        </div>
-        <div className="download-item">
-          <h2>Missionchief Bot</h2>
-          <p>The Missionchief Bot automates tasks and handles transportation requests to automate Missionchief credit gathering.</p>
-          <p>Downloads: {downloadCounts['MissionchiefBot-Latest'] !== undefined ? downloadCounts['MissionchiefBot-Latest'] : 'Loading...'}</p>
-          <Link to="/download/MissionchiefBot" className="download-button">Download</Link>
         </div>
         <div className="download-item">
           <h2>MilitaryChiefCLI (WIP)</h2>
