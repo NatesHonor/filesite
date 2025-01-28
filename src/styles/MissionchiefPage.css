@@ -125,6 +125,7 @@
     margin-top: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     color: #e0e0e0;
+    text-align: left;
 }
 
 .changelog-box h3 {
@@ -145,6 +146,7 @@
 .changelog-content p {
     margin: 0;
 }
+
 
 .navbar {
     background-color: #d3d3d3;
