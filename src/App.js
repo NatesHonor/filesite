@@ -4,6 +4,7 @@ import Downloads from './pages/downloads.js';
 import Donate from './pages/donate.js';
 import ThankYou from './pages/thankyou.js';
 import Missionchief from './pages/subpages/Missionchief.js';
+import MissionchiefX from './pages/subpages/MissionchiefX.js';
 import './styles/App.css';
 
 function App() {
@@ -33,6 +34,7 @@ function AppContent() {
           <Route path="/" element={<Home />} />
           <Route path="/downloads" element={<Downloads />} />
           <Route path="/downloads/missionchiefbot" element={<Missionchief />} />
+          <Route path="/downloads/missionchiefbot" element={<MissionchiefX />} />
           <Route path="/donate" element={<Donate />} />
           <Route path="/thank-you/:downloadName/:version" element={<ThankYou />} />
         </Routes>

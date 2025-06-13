@@ -1,67 +1,101 @@
 .downloads {
+  padding: 60px 30px;
+  max-width: 1000px;
+  margin: 40px auto;
+  background: #1e1e2f;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
   text-align: center;
-  padding: 50px 20px;
-  background-color: #2b2b3d;
-  margin: 20px auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  max-width: 800px;
+  color: #f5f5f5;
 }
 
 .downloads h1 {
-  font-size: 36px;
-  margin-bottom: 20px;
-  color: #f0f0f0;
+  font-size: 42px;
+  margin-bottom: 10px;
+  color: #ffffff;
 }
 
 .downloads p {
   font-size: 18px;
-  margin-bottom: 20px;
-  color: #d0d0d0;
+  color: #cccccc;
+  margin-bottom: 40px;
 }
 
 .download-list {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .download-list {
+    grid-template-columns: 1fr;
+  }
 }
 
 .download-item {
-  background-color: #2b2b3d;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  width: 100%;
-  max-width: 600px;
-  margin-bottom: 20px;
+  background: rgba(45, 45, 65, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 25px;
   text-align: left;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.download-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
 }
 
 .download-item h2 {
-  font-size: 24px;
+  font-size: 22px;
+  color: #ffffff;
   margin-bottom: 10px;
-  color: #f0f0f0;
 }
 
 .download-item p {
-  font-size: 16px;
-  margin-bottom: 10px;
-  color: #d0d0d0;
+  font-size: 15px;
+  color: #cccccc;
+  margin-bottom: 12px;
 }
 
 .download-button {
-  background-color: #6ab6ff;
-  color: #fff;
+  background-color: #4eafff;
+  color: white;
   border: none;
   padding: 10px 20px;
-  font-size: 18px;
-  border-radius: 4px;
+  font-size: 16px;
+  border-radius: 6px;
   text-decoration: none;
+  transition: background-color 0.3s, transform 0.2s;
   display: inline-block;
-  transition: background-color 0.3s ease, transform 0.2s;
 }
 
 .download-button:hover {
-  background-color: #509ed8;
+  background-color: #3095e6;
   transform: scale(1.05);
+}
+
+.label {
+  display: inline-block;
+  margin-left: 10px;
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 999px;
+  vertical-align: middle;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.label.new {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.label.old {
+  background-color: #dc3545;
+  color: #fff;
 }

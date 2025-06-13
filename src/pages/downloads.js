@@ -9,7 +9,7 @@ function Downloads() {
 
   useEffect(() => {
     const fetchDownloadCounts = async () => {
-      const downloadNames = ['NateLauncher', 'MissionchiefBot-Latest', 'MilitaryChiefCLI'];
+      const downloadNames = ['NateLauncher', 'MissionchiefBot', 'MissionchiefBotX', 'MilitaryChiefCLI'];
       const counts = {};
 
       for (const name of downloadNames) {
@@ -40,9 +40,15 @@ function Downloads() {
       <p>Explore our tools and utilities designed to enhance your experience.</p>
       <div className="download-list">
         <div className="download-item">
-          <h2>Missionchief Bot</h2>
+          <h2>Missionchief Bot X <span className="label new">NEW</span></h2>
           <p>The Missionchief Bot automates tasks and handles transportation requests to automate Missionchief credit gathering.</p>
-          <p>Downloads: {downloadCounts['MissionchiefBot-Latest'] !== undefined ? downloadCounts['MissionchiefBot-Latest'] : 'Loading...'}</p>
+          <p>Downloads: {downloadCounts['MissionchiefBotX'] !== undefined ? downloadCounts['MissionchiefBotX'] : 'Loading...'}</p>
+          <Link to="/downloads/MissionchiefBot" className="download-button">Download</Link>
+        </div>
+        <div className="download-item">
+          <h2>Old Missionchief Bot <span className="label old">OLD</span></h2>
+          <p>This is an archived old version of the MissionChief Bot.</p>
+          <p>Downloads: {downloadCounts['MissionchiefBot'] !== undefined ? downloadCounts['MissionchiefBot'] : 'Loading...'}</p>
           <Link to="/downloads/MissionchiefBot" className="download-button">Download</Link>
         </div>
         <div className="download-item">
