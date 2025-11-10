@@ -15,10 +15,8 @@ const MissionChiefX = () => {
       setLoading(true);
       try {
         const response = await fetch(`http://localhost:5000/version/missionchiefbotx`, {
-          method: 'GET',
-          headers: {
-            'x-api-key': process.env.REACT_APP_API_KEY,
-          },
+                    credentials: 'include',
+
         });
         if (!response.ok) {
           throw new Error('Network response was not ok');

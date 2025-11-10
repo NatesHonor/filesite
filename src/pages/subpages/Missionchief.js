@@ -15,10 +15,8 @@ const MissionChief = () => {
       setLoading(true);
       try {
         const response = await fetch(`https://api.natemarcellus.com/version/missionchiefbot`, {
-          method: 'GET',
-          headers: {
-            'x-api-key': process.env.REACT_APP_API_KEY,
-          },
+                      credentials: 'include',
+
         });
         if (!response.ok) {
           throw new Error('Network response was not ok');
