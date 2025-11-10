@@ -17,9 +17,7 @@ function ThankYou() {
       const version = pathParts[3];
 
       const response = await fetch(`https://api.natemarcellus.com/download/${appName}/${version}`, {
-        headers: {
-          'x-api-key': process.env.REACT_APP_API_KEY,
-        },
+        credentials: 'include',
       });
 
       if (response.ok) {
@@ -67,14 +65,12 @@ function ThankYou() {
 
   useEffect(() => {
     const fetchMarkdown = async () => {
-      let markdownFile;
       const missionchiefVersionFinder = location.pathname.includes('latest')
         ? '/MarkDownFiles/MissionchiefBotLatest.md'
         : `/MarkDownFiles/MissionchiefBot${location.pathname.split('/').pop()}.md`;
 
-      markdownFile = missionchiefVersionFinder;
       try {
-        const response = await fetch(markdownFile);
+        const response = await fetch(missionchiefVersionFinder);
         if (response.ok) {
           const text = await response.text();
           setMarkdownContent(text);
@@ -93,17 +89,9 @@ function ThankYou() {
     setAmount(e.target.value);
   };
 
-  const generatePayPalUrl = () => {
-    return `https://paypal.me/natemarcellus/${amount}`;
-  };
-
-  const generateCashAppUrl = () => {
-    return `https://cash.app/$natejmar/${amount}`;
-  };
-
-  const handleDownloadRetry = () => {
-    startDownload();
-  };
+  const generatePayPalUrl = () => `https://paypal.me/natemarcellus/${amount}`;
+  const generateCashAppUrl = () => `https://cash.app/$natejmar/${amount}`;
+  const handleDownloadRetry = () => startDownload();
 
   return (
     <div className="thank-you">
