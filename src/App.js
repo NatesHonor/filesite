@@ -34,7 +34,7 @@ function AppContent() {
           <Route path="/" element={<Home />} />
           <Route path="/downloads" element={<Downloads />} />
           <Route path="/downloads/missionchiefbot" element={<Missionchief />} />
-          <Route path="/downloads/missionchiefbot" element={<MissionchiefX />} />
+          <Route path="/downloads/missionchiefbotx" element={<MissionchiefX />} />
           <Route path="/donate" element={<Donate />} />
           <Route path="/thank-you/:downloadName/:version" element={<ThankYou />} />
         </Routes>

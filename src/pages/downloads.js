@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import '../styles/Downloads.css';
 
 const apikey = process.env.REACT_APP_API_KEY;
-
+const api = process.env.
 function Downloads() {
   const [downloadCounts, setDownloadCounts] = useState({});
 
@@ -43,7 +43,7 @@ function Downloads() {
           <h2>Missionchief Bot X <span className="label new">NEW</span></h2>
           <p>The Missionchief Bot automates tasks and handles transportation requests to automate Missionchief credit gathering.</p>
           <p>Downloads: {downloadCounts['MissionchiefBotX'] !== undefined ? downloadCounts['MissionchiefBotX'] : 'Loading...'}</p>
-          <Link to="/downloads/MissionchiefBot" className="download-button">Download</Link>
+          <Link to="/downloads/MissionchiefBotX" className="download-button">Download</Link>
         </div>
         <div className="download-item">
           <h2>Old Missionchief Bot <span className="label old">OLD</span></h2>

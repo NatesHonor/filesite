@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import '../../styles/MissionchiefPage.css';
 
-const MissionChief = () => {
-  const appName = "MissionchiefBot";
+const MissionChiefX = () => {
+  const appName = "MissionchiefBotX";
   const [versions, setVersions] = useState([]);
   const [latestVersion, setLatestVersion] = useState(null);
   const [changelogContent, setChangelogContent] = useState('');
@@ -14,7 +14,7 @@ const MissionChief = () => {
     const fetchVersions = async () => {
       setLoading(true);
       try {
-        const response = await fetch(`https://api.natemarcellus.com/version/missionchiefbot`, {
+        const response = await fetch(`http://localhost:5000/version/missionchiefbotx`, {
           method: 'GET',
           headers: {
             'x-api-key': process.env.REACT_APP_API_KEY,
@@ -29,7 +29,7 @@ const MissionChief = () => {
         setVersions(versions);
         setLatestVersion(latest);
 
-        const changelogResponse = await fetch('/MarkDownFiles/MissionchiefBotLatest.md');
+        const changelogResponse = await fetch('/MarkDownFiles/MissionchiefBotXLatest.md');
         if (!changelogResponse.ok) {
           throw new Error('Failed to fetch changelog');
         }
@@ -59,13 +59,13 @@ const MissionChief = () => {
       ) : (
         <>
           <div className="top-box">
-            <h1>Missionchief Bot</h1>
+            <h1>Missionchief Bot X</h1>
             <p>The ultimate automation tool to simplify your needs for Missionchief.</p>
 
             <div className="button-container">
               <Link to={`/thank-you/${appName}/latest`}>
                 <button className="primary-button">
-                  Download MissionchiefBot v{latestVersion}
+                  Download MissionchiefBot X v{latestVersion}
                 </button>
               </Link>
               <a
@@ -98,4 +98,4 @@ const MissionChief = () => {
   );
 };
 
-export default MissionChief;
+export default MissionChiefX;
