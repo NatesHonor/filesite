@@ -15,8 +15,7 @@ const MissionChiefX = () => {
       setLoading(true);
       try {
         const response = await fetch(`https://api.natemarcellus.com/version/missionchiefbotx`, {
-                    credentials: 'include',
-
+          credentials: 'include',
         });
         if (!response.ok) {
           throw new Error('Network response was not ok');
