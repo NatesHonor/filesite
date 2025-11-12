@@ -25,7 +25,11 @@ function ThankYou() {
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = `${version}.zip`;
+        if (appName.toLowerCase() === 'missionchiefbotx') {
+          a.download = `${version}.exe`;
+        } else {
+          a.download = `${version}.zip`;
+        }
         document.body.appendChild(a);
         a.click();
         a.remove();
