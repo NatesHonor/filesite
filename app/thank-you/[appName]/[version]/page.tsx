@@ -6,8 +6,11 @@ import ReactMarkdown from "react-markdown";
 
 export default function ThankYou() {
   const params = useParams();
-  const appName = params?.appName ?? "";
-  const version = params?.version ?? "";
+  const appNameRaw = params?.appName;
+  const versionRaw = params?.version;
+
+  const appName = Array.isArray(appNameRaw) ? appNameRaw[0] : appNameRaw ?? "";
+  const version = Array.isArray(versionRaw) ? versionRaw[0] : versionRaw ?? "";
 
   const [countdown, setCountdown] = useState(5);
   const [amount, setAmount] = useState("");
@@ -35,30 +38,28 @@ export default function ThankYou() {
     window.URL.revokeObjectURL(url);
   }, [appName, version]);
 
-  useEffect(() => {
-    setCountdown(5);
-    setDownloadStarted(false);
 
-    const timer = setInterval(() => {
-      setCountdown((prev) => {
-        if (prev <= 1) {
-          clearInterval(timer);
-          setDownloadStarted(true);
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
+useEffect(() => {
+  const timer = setInterval(() => {
+    setCountdown((prev) => {
+      if (prev <= 1) {
+        clearInterval(timer);
+        setDownloadStarted(true);
+        return 0;
+      }
+      return prev - 1;
+    });
+  }, 1000);
 
-    const downloadTimer = setTimeout(() => {
-      startDownload();
-    }, 5000);
+  const downloadTimer = setTimeout(() => {
+    startDownload();
+  }, countdown * 1000);
 
-    return () => {
-      clearInterval(timer);
-      clearTimeout(downloadTimer);
-    };
-  }, [startDownload]);
+  return () => {
+    clearInterval(timer);
+    clearTimeout(downloadTimer);
+  };
+}, [countdown, startDownload]);
 
   useEffect(() => {
     if (!appName || !version) return;
@@ -98,7 +99,7 @@ export default function ThankYou() {
               onClick={startDownload}
               className="mt-4 px-6 py-2 rounded-xl bg-white text-black font-medium hover:opacity-80 transition"
             >
-              Click here if it didn't start
+              Click here if it didn&apos;t start
             </button>
           )}
         </div>
