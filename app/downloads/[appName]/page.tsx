@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 
@@ -10,11 +10,9 @@ type VersionResponse = {
   versions: string[];
 };
 
-export default function AppDownloadPage() {
+export default function AppPage() {
   const params = useParams();
-  const appName = params?.appName ?? "";
-  const router = useRouter();
-
+  const appName = Array.isArray(params?.appName) ? params.appName[0] : params?.appName;
   const [versions, setVersions] = useState<string[]>([]);
   const [latestVersion, setLatestVersion] = useState<string | null>(null);
   const [changelogContent, setChangelogContent] = useState("");
@@ -24,14 +22,12 @@ export default function AppDownloadPage() {
     if (!appName) return;
 
     const fetchVersions = async () => {
-      setLoading(true);
       try {
         const response = await fetch(
           `https://api.natemarcellus.com/version/${appName.toLowerCase()}`,
           { credentials: "include" }
         );
         if (!response.ok) throw new Error("Failed to fetch versions");
-
         const data: VersionResponse = await response.json();
         setVersions(data.versions || []);
         setLatestVersion(data.latest || null);
@@ -39,9 +35,6 @@ export default function AppDownloadPage() {
         const changelogResponse = await fetch(
           `/MarkDownFiles/${appName}Latest.md`
         );
-        if (!changelogResponse.ok)
-          throw new Error("Failed to fetch changelog");
-
         const changelogText = await changelogResponse.text();
         setChangelogContent(changelogText);
       } catch {
@@ -74,10 +67,8 @@ export default function AppDownloadPage() {
           {appName}
         </h1>
         <p className="mt-6 text-lg text-neutral-300">
-          MissionchiefBot is NOT an official tool of missionchief.com nor is it 
-          owned by missionchief.It is an independent Automation tool blah blah blah (i got lazy)
+          The ultimate automation tool designed to streamline operational workflows.
         </p>
-
         <div className="mt-10 flex flex-wrap gap-4">
           {latestVersion && (
             <Link
@@ -87,9 +78,8 @@ export default function AppDownloadPage() {
               Download v{latestVersion}
             </Link>
           )}
-
           <a
-            href={`https://support.natemarcellus.com/docs/${appName.toLowerCase()}`}
+            href="https://support.natemarcellus.com/docs/missionchief-bot"
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-xl border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
