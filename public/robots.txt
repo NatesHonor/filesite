@@ -1,9 +1,0 @@
-# https://www.robotstxt.org/robotstxt.html
-User-agent: *
-Disallow:
-
-# Allow all web crawlers to index your site
-Allow: /
-
-# Sitemap location (if you have one)
-# Sitemap: https://files.natemarcellus.com/sitemap.xml
